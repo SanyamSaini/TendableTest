@@ -39,9 +39,13 @@ class MainVM(application: Application) : AndroidViewModel(application) {
     }
 
     fun getSavedInspection() {
-        viewModelScope.launch {
-            val result = mainRepository.getDraftedInspection()
-            _savedInspection.value = result
+        try {
+            viewModelScope.launch {
+                val result = mainRepository.getDraftedInspection()
+                _savedInspection.value = result
+            }
+        } catch (e : Exception) {
+            e.printStackTrace()
         }
     }
 
