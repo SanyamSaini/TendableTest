@@ -80,7 +80,7 @@ class CategoryAdapter(private val answerClickListener: AnswerClickListener) : Li
         fun bind(question: QuestionModel) {
             binding.tvQuestionName.text = question.name
             Log.d("CategoryAdapter", "question.answerChoices : ${question.answerChoices}")
-            val answerAdapter = AnswerAdapter(question.answerChoices!!, answerClickListener, question.id!!, question.selectedAnswerChoiceId ?: -1)
+            val answerAdapter = AnswerAdapter(question.answerChoices!!, answerClickListener, question.id!!, question.selectedAnswerChoiceId ?: -10)
             binding.rvAnswerChoices.layoutManager = GridLayoutManager(binding.root.context, 2)
             binding.rvAnswerChoices.adapter = answerAdapter
         }
