@@ -46,7 +46,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, AnswerClickListe
         initRecyclerView()
         clickListener()
         initObserver()
-        mainVM.getSavedInspection()
+        try {
+            mainVM.getSavedInspection()
+        } catch (e : Exception) {
+            e.printStackTrace()
+        }
     }
 
     private fun initRecyclerView() {
