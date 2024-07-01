@@ -23,17 +23,23 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import java.io.IOException
-import java.lang.Exception
+import kotlin.Exception
 
 class MainRepository(private val db : RoomDB) {
     companion object {
         private const val TAG = "MainRepository"
     }
 
-    suspend fun getDraftedInspection(): InspectionResponse {
-        return withContext(Dispatchers.IO) {
-            InspectionResponse(dbToInspection())
+    suspend fun getDraftedInspection(): InspectionResponse? {
+        return try {
+            withContext(Dispatchers.IO) {
+                InspectionResponse(dbToInspection())
+            }
+        } catch (e : Exception) {
+            e.printStackTrace()
+            null
         }
+
     }
 
     private fun dbToInspection() : InspectionModel {
