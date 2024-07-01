@@ -12,7 +12,7 @@ class AnswerAdapter(
     private val selectedAnswer : Int
 ) : RecyclerView.Adapter<AnswerAdapter.AnswerViewHolder>() {
 
-    private var selectedPosition: Int = -1
+    private var selectedPosition: Int = -10
 
     inner class AnswerViewHolder(private val binding: ItemAnswerChoiceBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -20,7 +20,7 @@ class AnswerAdapter(
             binding.rbAnswerChoice.text = answerChoice.name
             binding.rbAnswerChoice.isChecked = (position == selectedPosition)
 
-            if(answerChoice.id == selectedAnswer){
+            if(selectedAnswer != -10 && answerChoice.id == selectedAnswer){
                 binding.rbAnswerChoice.isChecked = true
             }
 
